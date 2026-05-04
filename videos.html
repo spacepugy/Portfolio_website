@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Videos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #6849f2;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .videos-section {
+            padding: 80px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #6849f2 0%, #4a2b8a 100%);
+        }
+
+        .video-container {
+            background: #e8dcc8;
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 30px;
+            opacity: 0;
+            transform: scale(0.8) translateY(40px);
+        }
+
+        .video-container.visible {
+            animation: videoPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes videoPopIn {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-title {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .video-description {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .back-link {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .back-link a {
+            color: white;
+            text-decoration: underline;
+            font-size: 2.0rem;
+        }
+    </style>
+</head>
+<body>
+    <section class="videos-section">
+        <!-- Video 5 -->
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="video-title">More Video 1</div>
+            <div class="video-description">Additional video content</div>
+        </div>
+
+        <!-- Video 6 -->
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="video-title">More Video 2</div>
+            <div class="video-description">Additional video content</div>
+        </div>
+
+        <!-- Video 7 -->
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="video-title">More Video 3</div>
+            <div class="video-description">Additional video content</div>
+        </div>
+
+        <!-- Video 8 -->
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="video-title">More Video 4</div>
+            <div class="video-description">Additional video content</div>
+        </div>
+
+        <!-- Video 9 -->
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="video-title">More Video 5</div>
+            <div class="video-description">Additional video content</div>
+        </div>
+
+        <!-- Video 10 -->
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="video-title">More Video 6</div>
+            <div class="video-description">Additional video content</div>
+        </div>
+    </section>
+
+    <div class="back-link">
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+    <script>
+        // Intersection Observer for video scroll animations
+        const videoContainers = document.querySelectorAll('.video-container');
+        
+        // Add data-index to each video container
+        videoContainers.forEach((video, index) => {
+            video.setAttribute('data-index', index);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.0
+        });
+
+        videoContainers.forEach(video => {
+            observer.observe(video);
+        });
+    </script>
+</body>
+</html>
